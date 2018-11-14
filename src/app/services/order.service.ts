@@ -18,6 +18,6 @@ export class OrderService {
 
     getCartFromJSON(id) {
         alert('Service id '+id)
-        return this.http.get(this.serviceUrl + id+ "/cart");
+        return this.http.get(this.serviceUrl + id);
     }
 }

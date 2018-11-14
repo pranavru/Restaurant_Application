@@ -9,7 +9,8 @@ import { OrderService } from 'src/app/services/order.service';
 export class OrdersComponent implements OnInit {
 
   orders: any = [];
-  ordersCart: any = [];
+  ordersCart: any = {};
+  ordersCartArray: any = [];
 
   constructor(private orderService: OrderService) { }
 
@@ -28,10 +29,10 @@ export class OrdersComponent implements OnInit {
   }
 
   getOrdersCart(id) {
-    alert(id)
     this.orderService.getCartFromJSON(id).subscribe((res) => {
       this.ordersCart = res;
-      console.log(this.ordersCart);
+      this.ordersCartArray = this.ordersCart.cart 
+      console.log(this.ordersCartArray);
     });
   }
 }

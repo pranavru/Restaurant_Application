@@ -18,10 +18,11 @@
           </tr>
         </thead>
         <tbody>
-          <ng-container *ngFor = "let order1 of ordersCart">
-            <td>{{order1.dishName}}</td>
-            <td>{{order1.restaurantName}}</td>
-            <td>{{order1.cost}}</td>
+          <ng-container>
+            <td *ngFor = "let order1 of ordersCartArray">{{order1.dishName}}</td>
+            <td *ngFor = "let order1 of ordersCartArray">{{order1.restaurantName}}</td>
+            <td *ngFor = "let order1 of ordersCartArray"> {{order1.cost}}</td>
+
           </ng-container>
         </tbody>
       </table>
