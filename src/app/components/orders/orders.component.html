@@ -1,0 +1,30 @@
+<div class="row col-md-10 col-md-offset-1">
+  <div class="well well-md" *ngFor="let order of orders, index as i">
+      <p style="font-size:10px" class="pull-right">{{order.date | date:"MM/dd/yy, h:mm a"}}</p><br />
+    <h4><b>Order ID: {{order.orderId}}</b>
+      <p class="pull-right">Total: {{order.total | currency:"Rs. "}}</p><br> 
+    </h4>
+    ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    <button class="btn btn-xs btn-info pull-right" (click)="getOrdersCart(order.id)">
+      View Orders
+    </button>
+    <div>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Dish Name</th>
+            <th>Restaurant Name</th>
+            <th>Cost</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngFor = "let order1 of ordersCart">
+            <td>{{order1.dishName}}</td>
+            <td>{{order1.restaurantName}}</td>
+            <td>{{order1.cost}}</td>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

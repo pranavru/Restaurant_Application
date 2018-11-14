@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 col-md-offset-3">
+      <form>
+        <div class="form-group">
+          <label>Dish</label>
+          <input type="text" name="dishName" [(ngModel)]="dishObject.dishName" class="form-control">
+        </div>
+        <div class="form-group">
+          <label>Restaurant</label>
+          <input type="text" name="restaurantName" [(ngModel)]="dishObject.restaurantName" class="form-control">
+        </div>
+        <div class="form-group">
+          <label>Cost</label>
+          <input type="text" name="cost" [(ngModel)]="dishObject.cost" class="form-control">
+        </div>
+        <div class="form-group">
+          <label>Type</label>
+          <input type="text" name="type" [(ngModel)]="dishObject.type" class="form-control">
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          <input type="text" name="description" [(ngModel)]="dishObject.description" class="form-control">
+        </div>
+        <div class="form-group">
+          <label>Poster</label>
+          <input type="text" name="poster" [(ngModel)]="dishObject.poster" class="form-control">
+        </div>
+        <button (click)="save()" class="btn btn-xs btn-success">Save</button> &nbsp;&nbsp;&nbsp;
+        <button (click)="cancel()" class="btn btn-xs btn-danger">Cancel</button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-4 col-md-offset-3">
+        <form>
+          <div class="form-group">
+            <label>Name</label>
+            <input type="text" name="dishName" [(ngModel)]="restaurantObject.name" class="form-control">
+          </div>
+          <div class="form-group">
+            <label>Address</label>
+            <input type="text" name="restaurantName" [(ngModel)]="restaurantObject.address" class="form-control">
+          </div>
+          <div class="form-group">
+            <label>Contact</label>
+            <input type="text" name="cost" [(ngModel)]="restaurantObject.contact" class="form-control">
+          </div>
+          <div class="form-group">
+            <label>Type</label>
+            <input type="text" name="type" [(ngModel)]="restaurantObject.type" class="form-control">
+          </div>
+          <button (click)="save()" class="btn btn-xs btn-success">Save</button> &nbsp;&nbsp;&nbsp;
+          <button (click)="cancel()" class="btn btn-xs btn-danger">Cancel</button>
+        </form>
+      </div>
+    </div>
+  </div>

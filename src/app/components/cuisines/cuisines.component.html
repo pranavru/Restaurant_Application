@@ -1,0 +1,47 @@
+<div class="well">
+    <div style="padding:3px;">
+        <label>Add Cuisines</label><br />
+        <input type="text" #cuiName placeholder="Dish Name" />&nbsp;&nbsp;&nbsp;
+        <input type="text" #resName placeholder="Restaurant Name" />&nbsp;&nbsp;&nbsp;
+        <input type="text" #cost placeholder="Cost" />&nbsp;&nbsp;&nbsp;
+        <input type="text" #type placeholder="Type Veg / Non-Veg" />&nbsp;&nbsp;&nbsp;
+        <input type="text" #desc placeholder="Description" /><br/>
+        <input type="text" #poster placeholder="Image URL" />&nbsp;&nbsp;&nbsp;
+        <button (click)="addCuisineFromService(cuiName.value, resName.value, cost.value, type.value, desc.value, poster.value)" class="btn btn-xs btn-success">Add
+            Cuisine</button>
+        <hr />
+    </div>
+    <form class="form-group">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Dish</th>
+                    <th>Restaurant</th>
+                    <th>Cost</th>
+                    <th>Type</th>
+                    <th>Description</th>
+                    <th>Poster</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let res of restaurant">
+                    <td>{{res.dishName}}</td>
+                    <td style="width:200px">{{res.restaurantName}}</td>
+                    <td>{{res.cost | currency:"Rs. "}}</td>
+                    <td>{{res.type}}</td>
+                    <td style="width:250px">{{res.description}}</td>
+                    <td><img width=50px height=50px src={{res.poster}}></td>
+                    <td>
+                        <button (click)="goToEditCuisine(res.id)" class="btn btn-xs btn-info">
+                            <p class="glyphicon glyphicon-edit"></p>
+                        </button>&nbsp;&nbsp;&nbsp;
+                        <button (click)="deleteCuisineFromService(res)" class="btn btn-xs btn-danger">
+                            <p class="glyphicon">X</p>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</div>

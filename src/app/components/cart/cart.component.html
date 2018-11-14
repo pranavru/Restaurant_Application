@@ -1,0 +1,31 @@
+<div class="well well-md">
+  <div class="row">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Dish Name</th>
+          <th>Restaurant Name</th>
+          <th>Type</th>
+          <th>Cost</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cartObj of cart">
+          <td>{{cartObj.dishName}}</td>
+          <td>{{cartObj.restaurantName}}</td>
+          <td>{{cartObj.type}}</td>
+          <td>{{cartObj.cost | currency:'Rs. '}}</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td><b>Grand Total: </b></td>
+          <td><b>{{total | currency:'Rs. '}}</b></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="col-md-2 pull-right">
+  <button (click) ="addCartToOrder()" [disabled]="!authService.loggedIn()" class="btn btn-md btn-success">Place Order</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+</div>

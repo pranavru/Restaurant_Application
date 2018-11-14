@@ -1,0 +1,103 @@
+body {
+	background-color:#ededed;
+	font-family:"Segoe UI";
+}
+
+/*----------2.Headings & Buttons----------*/
+h3 {
+	font-size:1em;
+	font-weight:600;
+	text-transform:capitalize;
+	margin:0 0 10px 0;
+	padding:0;
+	color:#555555;
+}
+.btn-styled {
+	background-color:transparent;
+	border:#666666 1.9px solid;
+	color:#666666;
+	font-size:0.85em;
+	border-radius:30px;
+	padding:5px 13px 4px 13px;
+	margin:10px 0 10px 0;
+}
+.btn-styled:hover, .btn-styled:active  {
+	background-color:#ededed;
+	border-color:#ededed;
+	color:#555555;
+}
+.btn-styled:focus {
+	outline:0 !important;
+}
+/*----------3.Cards----------*/
+.card {
+	position: relative;
+  	margin:2% 5px 2% 5px;
+  	background-color: #fff;
+  	transition: box-shadow .25s;
+  	border-radius: 2px;
+   	box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16),0 2px 10px 0 rgba(0,0,0,0.12);
+	padding:0;
+	min-width:200px;
+	max-width:300px;
+}
+.card .card-image img {
+  display: block;
+  border-radius: 2px 2px 0 0;
+  position: relative;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+}
+.card .card-content {
+  padding: 10px 8px 0 0;
+  border-radius: 0 0 2px 2px;
+}
+
+.card .card-content p {
+  margin:0;
+  
+  color: #555555;
+}
+/*----3.a.Horizontal----*/
+.card.horizontal .card-image img {
+	height:50px;
+	width:50px;
+}
+
+.card.horizontal {
+  	display: -webkit-flex;
+  	display: -ms-flexbox;
+  	display: flex;
+}
+.card.horizontal.small .card-image,
+ .card.horizontal.medium .card-image,
+  .card.horizontal.large .card-image {
+  	height: 100%;
+  	max-height: none;
+  	overflow: visible;
+}
+.card.horizontal .card-image img {
+  	width:125px;
+	height:100px;
+	margin-right:10px;
+}
+.card.horizontal .card-stacked {
+  	-webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  	-webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+  	position: relative;
+}
+.card.horizontal .card-stacked .card-content {
+  	-webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+	flex-grow: 1;
+}
+.card .card-image {
+  position: relative;
+}
