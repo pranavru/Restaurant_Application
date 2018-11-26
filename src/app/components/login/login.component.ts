@@ -8,24 +8,30 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  loginObject ={
-    userName:"",
-    password:""
+  loginObject = {
+    username: "",
+    password: ""
   };
+  result: any;
   errorMessage: any;
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
   }
   signIn() {
-    let result:any= this.authService.signInUser(this.loginObject);
-    console.log("Token: " + result.token);
-    if(result.success == true) {
-      localStorage.setItem('token', result.token);
-      this.router.navigate(['/cart']);
-    } else {
-      this.errorMessage="Invalid Username or Password";
-      this.router.navigate(['/login']);
-    }
+    this.authService.signInUser(this.loginObject).subscribe((response) => {
+      console.log(response);
+      this.result = response;
+      console.log("Token: " + this.result.token);
+      if (this.result.success == true) {
+        localStorage.setItem('token', this.result.token);
+        this.router.navigate(['/cart']);
+      } else {
+        this.errorMessage = "Invalid Username or Password";
+        this.router.navigate(['/login']);
+      }
+    });
+
+
   }
 }

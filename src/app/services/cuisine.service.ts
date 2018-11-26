@@ -5,14 +5,14 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class CuisineService {
-  serviceUrl:string="http://localhost:3000/cuisine/"
+  serviceUrl:string="http://localhost:9000/api/cuisines/"
   constructor(private http: HttpClient) { }
 
   getCuisine() {
     return this.http.get(this.serviceUrl);
   }
   deleteCuisine(cus) {
-    return this.http.delete(this.serviceUrl+cus.id);
+    return this.http.delete(this.serviceUrl+cus._id);
   }
 
   addCuisine(cuiname, resname, cost, type, desc, poster) {

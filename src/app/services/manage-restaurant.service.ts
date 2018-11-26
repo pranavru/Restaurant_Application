@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class ManageRestaurantService {
-  serviceUrl= "http://localhost:3000/resaurants/"
+  serviceUrl = "http://localhost:9000/api/restuarants/";
   constructor(private http: HttpClient) { }
 
   getRestaurants() {
@@ -13,7 +13,7 @@ export class ManageRestaurantService {
   }
 
   deleteRestaurant(res) {
-    return this.http.delete(this.serviceUrl + res.id);
+    return this.http.delete(this.serviceUrl + res._id);
   }
 
   addRestaurant(resName, resAddr, resConNo, resType) {
@@ -27,9 +27,9 @@ export class ManageRestaurantService {
   }
 
   getRestaurantById(id) {
-    return this.http.get(this.serviceUrl +id);
+    return this.http.get(this.serviceUrl + id);
   }
   updateRestaurantById(id, newObject) {
-    return this.http.put(this.serviceUrl +id, newObject);
+    return this.http.put(this.serviceUrl + id, newObject);
   }
 }

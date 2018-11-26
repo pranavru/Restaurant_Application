@@ -25,7 +25,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let res of restaurant">
+                <tr *ngFor="let res of restaurant.reverse() | paginate : {itemsPerPage :6, currentPage: p}">
                     <td>{{res.dishName}}</td>
                     <td style="width:200px">{{res.restaurantName}}</td>
                     <td>{{res.cost | currency:"Rs. "}}</td>
@@ -33,7 +33,7 @@
                     <td style="width:250px">{{res.description}}</td>
                     <td><img width=50px height=50px src={{res.poster}}></td>
                     <td>
-                        <button (click)="goToEditCuisine(res.id)" class="btn btn-xs btn-info">
+                        <button (click)="goToEditCuisine(res._id)" class="btn btn-xs btn-info">
                             <p class="glyphicon glyphicon-edit"></p>
                         </button>&nbsp;&nbsp;&nbsp;
                         <button (click)="deleteCuisineFromService(res)" class="btn btn-xs btn-danger">
@@ -43,5 +43,6 @@
                 </tr>
             </tbody>
         </table>
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </form>
 </div>

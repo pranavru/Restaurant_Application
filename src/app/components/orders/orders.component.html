@@ -1,31 +1,36 @@
 <div class="row col-md-10 col-md-offset-1">
-  <div class="well well-md" *ngFor="let order of orders, index as i">
-      <p style="font-size:10px" class="pull-right">{{order.date | date:"MM/dd/yy, h:mm a"}}</p><br />
+  <div class="well well-md">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Dish Name</th>
+          <th>Quantity</th>
+          <th>Restaurant Name</th>
+          <th>Cost</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container>
+          <tr *ngFor="let order1 of ordersCart.cart" >
+            <td>{{order1.dishName}}</td>
+            <td>{{order1.qty}}</td>
+            <td>{{order1.restaurantName}}</td>
+            <td>{{order1.cost}}</td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="well well-md" *ngFor="let order of orders.reverse() | paginate : {itemsPerPage :4, currentPage: p}, index as i ">
+    <p style="font-size:10px" class="pull-right">{{order.date | date:"MM/dd/yyyy, h:mm:ss a"}}</p><br />
     <h4><b>Order ID: {{order.orderId}}</b>
-      <p class="pull-right">Total: {{order.total | currency:"Rs. "}}</p><br> 
+      <p class="pull-right">Total: {{order.total | currency:"Rs. "}}</p><br>
     </h4>
-    ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    <button class="btn btn-xs btn-info pull-right" (click)="getOrdersCart(order.id)">
+    ------------------------------------------------------------------------------------------------------------------------
+    <button class="btn btn-xs btn-info pull-right" (click)="getOrdersCart(order._id)">
       View Orders
     </button>
-    <div>
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>Dish Name</th>
-            <th>Restaurant Name</th>
-            <th>Cost</th>
-          </tr>
-        </thead>
-        <tbody>
-          <ng-container>
-            <td *ngFor = "let order1 of ordersCartArray">{{order1.dishName}}</td>
-            <td *ngFor = "let order1 of ordersCartArray">{{order1.restaurantName}}</td>
-            <td *ngFor = "let order1 of ordersCartArray"> {{order1.cost}}</td>
-
-          </ng-container>
-        </tbody>
-      </table>
-    </div>
   </div>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
 </div>

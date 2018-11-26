@@ -6,9 +6,9 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class CartService {
-  serviceUrl: "http://localhost:3000/cuisine/"
-  serviceUrl1 = "http://localhost:3000/cart/"
-  serviceUrl2 = "http://localhost:3000/orders/"
+  serviceUrl: "http://localhost:9000/api/cuisines/"
+  serviceUrl1 = "http://localhost:9000/api/cart/"
+  serviceUrl2 = "http://localhost:9000/api/orders/"
   cart: any = [];
   constructor(private http: HttpClient) { }
 
@@ -18,27 +18,30 @@ export class CartService {
   getDish() {
     return this.http.get(this.serviceUrl1);
   }
-  
-  addCuisine(cuiname, resname, cost, type) {
-    let newDish = { 
+
+  addCuisine(cuiname, resname, cost, type, qty) {
+    let newDish = {
       dishName: cuiname,
       restaurantName: resname,
       cost: cost,
-      type: type
+      type: type,
+      qty: qty
     }
     return this.http.post(this.serviceUrl1, newDish);
   }
 
+
   addToCart(cuiname, resname, cost, type) {
-    this.addCuisine(cuiname, resname, cost, type).subscribe((response) => {
+    const qty = 1;
+    this.addCuisine(cuiname, resname, cost, type, qty).subscribe((response) => {
       this.cart += response;
-      alert('The Product added with Id: '+response);
-      return response;
+      alert('The Product added with Id: ' + response);
     });
   }
-  
+
   deleteFromCartOnOrder(id) {
-    return this.http.delete(this.serviceUrl1+id)
+    return this.http.delete(this.serviceUrl1 + id).subscribe(() => {
+    })
   }
 
   addToOrder(OrderObject) {

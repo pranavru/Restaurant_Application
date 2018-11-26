@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class OrderService {
 
-    serviceUrl = "http://localhost:3000/orders/"
+    serviceUrl = "http://localhost:9000/api/orders/"
     constructor(private http:HttpClient) {
 
     }
@@ -18,6 +18,7 @@ export class OrderService {
 
     getCartFromJSON(id) {
         alert('Service id '+id)
+        console.log(this.http.get(this.serviceUrl + id));
         return this.http.get(this.serviceUrl + id);
     }
 }

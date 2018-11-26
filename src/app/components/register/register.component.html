@@ -1,26 +1,35 @@
 <div class="row well well-md">
   <div class="col-md-6 col-md-offset-3">
     <form [formGroup]="myForm" (ngSubmit)='addUserToService(username.value, password.value, email.value, contact.value)'>
-      <h3><label>Registeration Page:</label></h3>
+      <h3>
+        <label>Registeration Page:</label>
+      </h3>
+
       <div class="form-group">
         <label for="">User Name: </label>
         <input type="text" formControlName='username' #username class="form-control">
         <div *ngIf="myForm.controls['username'].hasError('required') && myForm.controls['username'].touched" class="alert alert-danger">Username
-          Required</div>
+          Required
+        </div>
       </div>
+
       <div class="form-group">
         <label for="">Password: </label>
         <input type="password" formControlName='password' #password class="form-control">
         <div *ngIf="myForm.controls['password'].hasError('required') 
         && myForm.controls['password'].touched"
-          class="alert alert-danger">Password Required</div>
+          class="alert alert-danger">Password Required
+        </div>
         <div *ngIf="myForm.controls['password'].hasError('minlength') 
           && myForm.controls['password'].touched"
-          class="alert alert-danger">Password min 8 characters</div>
+          class="alert alert-danger">Password min 8 characters
+        </div>
         <div *ngIf="myForm.controls['password'].hasError('maxlength') 
         && myForm.controls['password'].touched"
-          class="alert alert-danger">Password max 15 charcters</div>
+          class="alert alert-danger">Password max 15 charcters
+        </div>
       </div>
+
       <div class="form-group">
         <label for="">Email: </label>
         <input type="text" formControlName='email' #email class="form-control">
@@ -31,19 +40,22 @@
           Email Format incorrect
         </div>
       </div>
+
       <div class="form-group">
-          <label for="">Contact Number : </label>
-          <input type="text" formControlName='contact' #contact class="form-control">
-          <div *ngIf="myForm.controls['contact'].touched && myForm.controls['contact'].hasError('required')" class="alert alert-danger">
-              Contact Number required
-          </div>
-          <div *ngIf="myForm.controls['contact'].touched && myForm.controls['contact'].hasError('pattern')" class="alert alert-danger">
-            Contact Number Format incorrect
-          </div>
+        <label for="">Contact Number : </label>
+        <input type="text" formControlName='contact' #contact class="form-control">
+        <div *ngIf="myForm.controls['contact'].touched && myForm.controls['contact'].hasError('required')" class="alert alert-danger">
+          Contact Number required
         </div>
+        <div *ngIf="myForm.controls['contact'].touched && myForm.controls['contact'].hasError('pattern')" class="alert alert-danger">
+          Contact Number Format incorrect
+        </div>
+      </div>
+
       <div class="form-group">
         <button type="submit" [disabled]="!myForm.valid" class="btn btn-success">Sign Up</button>
       </div>
+
     </form>
   </div>
 </div>

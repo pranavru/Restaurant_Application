@@ -1,4 +1,4 @@
-<div class="row well well-md">
+<div class="row">
   <div class="col-md-6 col-md-offset-3">
     <form>
       <h3><label>Login Page:</label></h3>
@@ -7,7 +7,7 @@
       </div>
       <div class="form-group">
         <label for="">User Name: </label>
-        <input type="text" name="userName" [(ngModel)]="loginObject.userName" class="form-control">
+        <input type="text" name="userName" [(ngModel)]="loginObject.username" class="form-control">
       </div>
       <div class="form-group">
         <label for="">Password: </label>
@@ -19,22 +19,4 @@
     </form>
   </div>
 </div>
-<div>
-  {{loginObject | json}}
-</div>
 
-<!-- <div *ngIf="myForm.controls['username'].hasError('required') && myForm.controls['username'].touched" class="alert alert-danger">Username
-          Required
-     </div> 
--->
-
-<!--  <div *ngIf="myForm.controls['password'].hasError('required') && myForm.controls['password'].touched" 
-        class="alert alert-danger">Password Required
-      </div>
-      <div *ngIf="myForm.controls['password'].hasError('minlength') && myForm.controls['password'].touched"
-          class="alert alert-danger">Password min 8 characters
-      </div>
-      <div *ngIf="myForm.controls['password'].hasError('maxlength') && myForm.controls['password'].touched"
-          class="alert alert-danger">Password max 15 charcters
-      </div> 
--->

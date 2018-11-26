@@ -17,15 +17,16 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li class="active"><a routerLink="" class="glyphicon glyphicon-home"> Home <span class="sr-only">(current)</span></a></li>
+            <li class="active"><a routerLink="" class="glyphicon glyphicon-home"> Home <span class="sr-only">(current)</span>
+              </a></li>
             <li><a routerLink="/restaurants" *ngIf="authService.loggedIn()" class="glyphicon">Restaurants</a></li>
             <li><a routerLink="/cuisines" *ngIf="authService.loggedIn()" class="glyphicon">Cuisines</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a routerLink="/cart" class="glyphicon glyphicon-shopping-cart"> Cart</a></li>
-            <li><a routerLink="/order" class="glyphicon"> Orders</a></li>
+            <li><a routerLink="/order" *ngIf="authService.loggedIn()" class="glyphicon"> Orders</a></li>
             <li><a routerLink="/login" *ngIf="!authService.loggedIn()" class="glyphicon glyphicon-log-in"> Login</a></li>
-            <li><a routerLink="/register" class="glyphicon ">Register</a></li>
+            <li><a routerLink="/register" *ngIf="!authService.loggedIn()" class=" glyphicon glyphicon-user "> Register</a></li>
             <li><a routerLink="/logout" *ngIf="authService.loggedIn()" (click)="authService.loggedOut()" class="glyphicon">
                 LogOut</a></li>
           </ul>

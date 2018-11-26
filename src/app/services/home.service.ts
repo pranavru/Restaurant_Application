@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class HomeService {
-  serviceUrl:string="http://localhost:3000/cuisine/"
+  serviceUrl:string="http://localhost:9000/api/cuisines/"
   constructor(private http: HttpClient) { }
 
   getCuisine() {

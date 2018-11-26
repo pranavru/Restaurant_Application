@@ -11,7 +11,6 @@ export class OrdersComponent implements OnInit {
   orders: any = [];
   ordersCart: any = {};
   ordersCartArray: any = [];
-
   constructor(private orderService: OrderService) { }
 
   get format() {
@@ -24,15 +23,15 @@ export class OrdersComponent implements OnInit {
 
   getOrders() {
     this.orderService.getOrderFromJSON().subscribe((res) => {
+      console.log(res);
       this.orders = res;
     });
   }
 
   getOrdersCart(id) {
+    this.ordersCart = {};
     this.orderService.getCartFromJSON(id).subscribe((res) => {
       this.ordersCart = res;
-      this.ordersCartArray = this.ordersCart.cart 
-      console.log(this.ordersCartArray);
     });
   }
 }

@@ -28,7 +28,7 @@ export class EditRestaurantComponent implements OnInit {
     });
   }
   save() {
-    this.manageRestaurantCuisine.updateRestaurantById(this.restaurantObject.id, this.restaurantObject).subscribe((res) => {
+    this.manageRestaurantCuisine.updateRestaurantById(this.restaurantObject._id, this.restaurantObject).subscribe((res) => {
       alert("Data Updated !");
       this.router.navigate(['/restaurants/']);
     });

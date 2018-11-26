@@ -24,7 +24,7 @@ import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { AuthGuard } from './guards/auth.guard';
-
+import { NgxPaginationModule } from "ngx-pagination"
 
 
 const appRoutes: Routes = [
@@ -60,6 +60,7 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
+    NgxPaginationModule,
     RouterModule.forRoot(appRoutes)
   ],
   providers: [

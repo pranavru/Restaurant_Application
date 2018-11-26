@@ -29,7 +29,7 @@ export class EditDishComponent implements OnInit {
   }
 
   save() {
-    this.cuisineService.updateCuisineById(this.dishObject.id, this.dishObject).subscribe((res) => {
+    this.cuisineService.updateCuisineById(this.dishObject._id, this.dishObject).subscribe((res) => {
       alert("Data Updated !");
       this.router.navigate(['/cuisines/']);
     });

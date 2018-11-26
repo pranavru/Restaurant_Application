@@ -1,22 +1,29 @@
 <div class="well well-md">
-  <div class="row">
+  <div class="row" *ngIf=cart.length>
     <table class="table table-striped">
       <thead>
         <tr>
           <th>Dish Name</th>
           <th>Restaurant Name</th>
           <th>Type</th>
+          <th>Qty</th>
           <th>Cost</th>
         </tr>
       </thead>
       <tbody>
+
+        <!-- Displays the Data from the Cart Array -->
         <tr *ngFor="let cartObj of cart">
           <td>{{cartObj.dishName}}</td>
           <td>{{cartObj.restaurantName}}</td>
           <td>{{cartObj.type}}</td>
+          <td>{{cartObj.qty}}</td>
+          <!-- <td><input type="number" name='qty' value='1' [(ngModel)]="qty" style="width: 35px;" /></td> -->
           <td>{{cartObj.cost | currency:'Rs. '}}</td>
         </tr>
+        <!-- Displays the Total in Cart -->
         <tr>
+          <td></td>
           <td></td>
           <td></td>
           <td><b>Grand Total: </b></td>
@@ -25,7 +32,15 @@
       </tbody>
     </table>
   </div>
+  <div *ngIf=!cart.length>
+    <h3>Cart is Empty
+      <div class="col-md-2 pull-right">
+        <button (click)="goToHome()" *ngIf=!cart.length class="btn btn-sm btn-success">Go To Home</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      </div>
+    </h3>
+  </div>
 </div>
 <div class="col-md-2 pull-right">
-  <button (click) ="addCartToOrder()" [disabled]="!authService.loggedIn()" class="btn btn-md btn-success">Place Order</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <button (click)="addCartToOrder()" *ngIf=cart.length [disabled]="!authService.loggedIn()" class="btn btn-md btn-success">Place
+    Order</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 </div>

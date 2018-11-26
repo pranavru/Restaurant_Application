@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -10,7 +11,7 @@ import { UserService } from 'src/app/services/user.service';
 export class RegisterComponent implements OnInit {
   
   myForm:FormGroup;
-  constructor(private user: UserService) {
+  constructor(private user: UserService, private router: Router) {
     this.myForm = new FormGroup({
       username: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required, Validators.minLength(8), Validators.maxLength(15)]),
@@ -25,8 +26,10 @@ export class RegisterComponent implements OnInit {
     console.log(myForm.value);
   }
   addUserToService(username, password, email, contact) {
+    
     this.user.addUser(username, password, email, contact).subscribe((res)=> {
         alert("Successfully Registered");
+        this.router.navigate(['/login']);
     });
   } 
 }
