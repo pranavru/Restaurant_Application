@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ManageRestaurantService } from 'src/app/services/manage-restaurant.service';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { Restaurant } from 'src/app/viewmodels/restaurant.viewmodel';
 
 @Component({
   selector: 'app-restaurant',
@@ -11,7 +12,7 @@ import { HttpClient } from '@angular/common/http';
 export class RestaurantComponent implements OnInit {
 
   constructor(private manageRestaurantService: ManageRestaurantService, private router: Router, private http: HttpClient) { }
-  restaurant: any = [];
+  restaurant: Restaurant[] = [];
 
   ngOnInit() {
     this.getRestaurantFromService();

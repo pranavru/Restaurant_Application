@@ -20,19 +20,22 @@ export class EditRestaurantComponent implements OnInit {
   };
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private manageRestaurantCuisine: ManageRestaurantService) { }
 
+  //Loads the Data in Form Fields
   ngOnInit() {
     let id = this.activatedRoute.snapshot.paramMap.get("id");
     this.manageRestaurantCuisine.getRestaurantById(id).subscribe((res) => {
-      console.log(res);
       this.restaurantObject = res;
     });
   }
+
+  //Saves the Data to the server if or not updated.
   save() {
     this.manageRestaurantCuisine.updateRestaurantById(this.restaurantObject._id, this.restaurantObject).subscribe((res) => {
-      alert("Data Updated !");
       this.router.navigate(['/restaurants/']);
     });
   }
+  
+  //Navigates back to 'Restaurants' page.
   cancel() {
     this.router.navigate(['/restaurants/']);
   }

@@ -1,16 +1,25 @@
+<!-- <script>
+    function changeddl(obj) {
+
+        var text = obj.options[obj.selectedIndex].text;
+        var ddl2 = document.querySelectorAll('#iOperation option');
+        for (var i = 1; i < ddl2.length; i++) {
+            var option = ddl2[i];
+            option.style.display = 'none';
+            if (text == 'Electronics') {
+                if (['Laptop', 'Phone', 'Television'].indexOf(option.text) > -1)
+                    option.style.display = 'block'
+
+            }
+            if (text == 'Grocery') {
+                if (['Soap', 'Powder'].indexOf(option.text) > -1)
+                    option.style.display = 'block'
+            }
+        }
+    }
+</script> -->
+
 <div class="well">
-    <div style="padding:3px;">
-        <label>Add Cuisines</label><br />
-        <input type="text" #cuiName placeholder="Dish Name" />&nbsp;&nbsp;&nbsp;
-        <input type="text" #resName placeholder="Restaurant Name" />&nbsp;&nbsp;&nbsp;
-        <input type="text" #cost placeholder="Cost" />&nbsp;&nbsp;&nbsp;
-        <input type="text" #type placeholder="Type Veg / Non-Veg" />&nbsp;&nbsp;&nbsp;
-        <input type="text" #desc placeholder="Description" /><br/>
-        <input type="text" #poster placeholder="Image URL" />&nbsp;&nbsp;&nbsp;
-        <button (click)="addCuisineFromService(cuiName.value, resName.value, cost.value, type.value, desc.value, poster.value)" class="btn btn-xs btn-success">Add
-            Cuisine</button>
-        <hr />
-    </div>
     <form class="form-group">
         <table class="table table-striped">
             <thead>
@@ -25,7 +34,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let res of restaurant.reverse() | paginate : {itemsPerPage :6, currentPage: p}">
+                <tr *ngFor="let res of cuisines.reverse() | paginate : {itemsPerPage :6, currentPage: p}">
                     <td>{{res.dishName}}</td>
                     <td style="width:200px">{{res.restaurantName}}</td>
                     <td>{{res.cost | currency:"Rs. "}}</td>
@@ -45,4 +54,22 @@
         </table>
         <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </form>
+</div>
+<div style="padding:3px;" class="col-md-6 col-md-offset-3">
+    <label>
+        <h1>Add Cuisines</h1>
+    </label>
+    <input type="text" #cuiName placeholder="Dish Name" class='form-control' />&nbsp;
+    <select #resName class='form-control'>
+        <option value="">Select</option>
+        <option *ngFor="let res of restaurants" value={{res.name}}>{{res.name}}</option>
+    </select>&nbsp;
+    <input type="text" #cost placeholder="Cost" class='form-control' />&nbsp;
+    <input type="text" #type placeholder="Type Veg / Non-Veg" class='form-control' />&nbsp;
+    <input type="text" #desc placeholder="Description" class='form-control' />&nbsp;
+    <input type="text" #poster placeholder="Image URL" class='form-control' />&nbsp;
+    <button (click)="addCuisineFromService(cuiName.value, resName.value, cost.value, type.value, desc.value, poster.value)"
+        class="btn btn-success form-control">Add
+        Cuisine</button>&nbsp;
+    <hr />
 </div>

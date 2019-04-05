@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Restaurant } from '../viewmodels/restaurant.viewmodel';
 
 @Injectable({
   providedIn: 'root'
@@ -8,8 +10,8 @@ export class ManageRestaurantService {
   serviceUrl = "http://localhost:9000/api/restuarants/";
   constructor(private http: HttpClient) { }
 
-  getRestaurants() {
-    return this.http.get(this.serviceUrl);
+  getRestaurants():Observable<Restaurant[]> {
+    return this.http.get<Restaurant[]>(this.serviceUrl);
   }
 
   deleteRestaurant(res) {
@@ -26,8 +28,8 @@ export class ManageRestaurantService {
     return this.http.post(this.serviceUrl, newRestaurant);
   }
 
-  getRestaurantById(id) {
-    return this.http.get(this.serviceUrl + id);
+  getRestaurantById(id):Observable<Restaurant[]> {
+    return this.http.get<Restaurant[]>(this.serviceUrl + id);
   }
   updateRestaurantById(id, newObject) {
     return this.http.put(this.serviceUrl + id, newObject);

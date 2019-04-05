@@ -16,12 +16,14 @@ export class HomeComponent implements OnInit {
     this.getCuisineFromService();
   }
 
+  //Gets cuisines from Services as dishes
   getCuisineFromService() {
     this.homeService.getCuisine().subscribe((res)=> {
       this.dishes = res;
     });
   }
 
+  //Adds data to Cart on Click 'Add to Cart'
   addToCartService(cuiname, resname, cost, type) {
     this.cartService.addToCart(cuiname, resname, cost, type);
   }

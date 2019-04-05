@@ -18,9 +18,10 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  //Sign in to the Data base and toekn generation
   signIn() {
     this.authService.signInUser(this.loginObject).subscribe((response) => {
-      console.log(response);
       this.result = response;
       console.log("Token: " + this.result.token);
       if (this.result.success == true) {

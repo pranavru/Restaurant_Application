@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Order } from '../viewmodels/order.viewmodel';
 
 @Injectable({
   providedIn: 'root'
@@ -12,13 +14,19 @@ export class OrderService {
 
     }
 
-    getOrderFromJSON() {
-        return this.http.get(this.serviceUrl);
+    getOrderFromJSON():Observable<Order[]> {
+        return this.http.get<Order[]>(this.serviceUrl);
     }
 
-    getCartFromJSON(id) {
-        alert('Service id '+id)
-        console.log(this.http.get(this.serviceUrl + id));
-        return this.http.get(this.serviceUrl + id);
+    getCartFromJSON(id):Observable<Order[]> {
+        return this.http.get<Order[]>(this.serviceUrl + id);
+    }
+
+    editCartFromJson(id, objectcart) {
+        return this.http.put(this.serviceUrl + id, objectcart)
+    }
+    
+    deleteCartItems(id) {
+        return this.http.delete(this.serviceUrl + id);
     }
 }

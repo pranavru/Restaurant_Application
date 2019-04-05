@@ -17,10 +17,27 @@
           <td>{{cartObj.dishName}}</td>
           <td>{{cartObj.restaurantName}}</td>
           <td>{{cartObj.type}}</td>
-          <td>{{cartObj.qty}}</td>
+          <td>
+            <div *ngIf=!(this.editCart)>{{cartObj.qty}} &nbsp; <button class="btn btn-xs btn-info glyphicon glyphicon-edit"
+                (click)="edit()">
+              </button></div>
+            <div *ngIf=this.editCart>
+              <form>
+                <div>
+                  <input type="number" style="width:30px" [(ngModel)]="cartObj.qty" name="qty" min=1 max=5 />
+                </div>
+                <button (click)="editQty(cartObj._id, cartObj.qty)" class="btn btn-xs btn-success">Save</button>
+                &nbsp;&nbsp;&nbsp;
+                <button (click)="cancel()" class="btn btn-xs btn-danger">Cancel</button>
+              </form>
+            </div>
+
+          </td>
           <!-- <td><input type="number" name='qty' value='1' [(ngModel)]="qty" style="width: 35px;" /></td> -->
           <td>{{cartObj.cost | currency:'Rs. '}}</td>
         </tr>
+
+
         <!-- Displays the Total in Cart -->
         <tr>
           <td></td>
@@ -33,13 +50,24 @@
     </table>
   </div>
   <div *ngIf=!cart.length>
-    <h3>Cart is Empty
+    <h3><i>Cart is Empty</i>
       <div class="col-md-2 pull-right">
-        <button (click)="goToHome()" *ngIf=!cart.length class="btn btn-sm btn-success">Go To Home</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <button (click)="goToHome()" *ngIf=!cart.length class="btn btn-sm btn-success">Go To Home</button>
       </div>
     </h3>
   </div>
 </div>
+
+<!--div>
+  <div class="form-group">
+    <input placeholder="search for location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control"
+      #search [formControl]="searchControl">
+  </div>
+  <agm-map [zoom]="15" [latitude]="lat" [longitude]="lng" draggable="false">
+    <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+  </agm-map>
+</div>-->
+
 <div class="col-md-2 pull-right">
   <button (click)="addCartToOrder()" *ngIf=cart.length [disabled]="!authService.loggedIn()" class="btn btn-md btn-success">Place
     Order</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

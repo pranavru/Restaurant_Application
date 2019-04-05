@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Cart } from '../viewmodels/cart.viewmodel';
+import { Cuisine } from '../viewmodels/cuisine.viewmodel';
 
 @Injectable({
   providedIn: 'root'
@@ -10,13 +13,18 @@ export class CartService {
   serviceUrl1 = "http://localhost:9000/api/cart/"
   serviceUrl2 = "http://localhost:9000/api/orders/"
   cart: any = [];
+  cartObj: any = {};
   constructor(private http: HttpClient) { }
 
-  getDishFromJSON(dish) {
-    return this.http.get(this.serviceUrl + dish);
+  getDishFromJSON(dish):Observable<Cuisine[]> {
+    return this.http.get<Cuisine[]>(this.serviceUrl + dish);
   }
-  getDish() {
-    return this.http.get(this.serviceUrl1);
+  getDish():Observable<Cart[]> {
+    return this.http.get<Cart[]>(this.serviceUrl1);
+  }
+
+  getDishById(id):Observable<Cart> {
+    return this.http.get<Cart>(this.serviceUrl1 + id);
   }
 
   addCuisine(cuiname, resname, cost, type, qty) {
@@ -35,7 +43,7 @@ export class CartService {
     const qty = 1;
     this.addCuisine(cuiname, resname, cost, type, qty).subscribe((response) => {
       this.cart += response;
-      alert('The Product added with Id: ' + response);
+      alert('The Product is added');
     });
   }
 
@@ -45,6 +53,10 @@ export class CartService {
   }
 
   addToOrder(OrderObject) {
-    return this.http.post(this.serviceUrl2, OrderObject); //db
+    return this.http.post(this.serviceUrl2, OrderObject);
+  }
+
+  editOrder(id, cartArray) {
+    return this.http.put(this.serviceUrl1 + id, cartArray);
   }
 }

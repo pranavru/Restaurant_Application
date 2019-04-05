@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { NgxPaginationModule } from "ngx-pagination";
+import { AgmCoreModule } from "@agm/core";
 
 import { ManageRestaurantService } from './services/manage-restaurant.service';
 import { UserService } from './services/user.service';
@@ -10,6 +12,8 @@ import { HomeService } from './services/home.service';
 import { CuisineService } from './services/cuisine.service';
 import { CartService } from './services/cart.service';
 import { AuthService } from './authentication/auth.service';
+
+import { AuthGuard } from './guards/auth.guard';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -23,9 +27,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { OrdersComponent } from './components/orders/orders.component';
-import { AuthGuard } from './guards/auth.guard';
-import { NgxPaginationModule } from "ngx-pagination"
-
+import { FooterCompoenent } from './components/footer/footer.component';
+//import { AutocompleteComponent } from './components/autocomplete/autocomplete.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -33,7 +36,7 @@ const appRoutes: Routes = [
   { path: 'register', component: RegisterComponent},
   { path: 'cart', component: CartComponent },
   { path: 'cuisines', component: CuisinesComponent, canActivate:[AuthGuard] },
-  { path: 'edit/:id', component: EditDishComponent },
+  //{ path: 'edit/:id', component: EditDishComponent },
   { path: 'editRes/:id', component: EditRestaurantComponent },
   { path: 'login', component: LoginComponent},
   { path: 'logout', component: LogoutComponent},
@@ -53,7 +56,10 @@ const appRoutes: Routes = [
     NavbarComponent,
     LoginComponent,
     LogoutComponent,
-    OrdersComponent
+    OrdersComponent,
+    FooterCompoenent,
+    //AutocompleteComponent
+    
   ],
   imports: [
     BrowserModule,
@@ -61,7 +67,10 @@ const appRoutes: Routes = [
     HttpClientModule,
     FormsModule,
     NgxPaginationModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+    AgmCoreModule.forRoot({
+      apiKey: "AIzaSyCDwviZTtTxuTJa2m_AwDXi5qpxDJoKzGY"
+    })
   ],
   providers: [
     ManageRestaurantService,

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderService } from 'src/app/services/order.service';
+import { Order } from 'src/app/viewmodels/order.viewmodel';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-orders',
@@ -8,10 +10,15 @@ import { OrderService } from 'src/app/services/order.service';
 })
 export class OrdersComponent implements OnInit {
 
-  orders: any = [];
+  orders: Order[] = [];
   ordersCart: any = {};
-  ordersCartArray: any = [];
-  constructor(private orderService: OrderService) { }
+  editOrder= false;
+  editCart= false;
+  quantity: number;
+  dish:[];
+  constructor(private orderService: OrderService, private router:Router) { }
+
+  dishObject: any = {};
 
   get format() {
     return 'short';
@@ -22,8 +29,9 @@ export class OrdersComponent implements OnInit {
   }
 
   getOrders() {
+    this.editOrder =false;
+    
     this.orderService.getOrderFromJSON().subscribe((res) => {
-      console.log(res);
       this.orders = res;
     });
   }
@@ -33,5 +41,12 @@ export class OrdersComponent implements OnInit {
     this.orderService.getCartFromJSON(id).subscribe((res) => {
       this.ordersCart = res;
     });
+  }
+
+  deleteOrdersCart(id) {
+    this.ordersCart = {};
+    this.orderService.deleteCartItems(id).subscribe(() => {
+      this.getOrders();
+    })
   }
 }

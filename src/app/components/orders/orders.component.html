@@ -11,26 +11,37 @@
       </thead>
       <tbody>
         <ng-container>
-          <tr *ngFor="let order1 of ordersCart.cart" >
+          <tr *ngFor="let order1 of ordersCart.cart, let i of index">
             <td>{{order1.dishName}}</td>
-            <td>{{order1.qty}}</td>
+            <td>
+              <div *ngIf=!(this.editCart)>{{order1.qty}}</div>
+              
+            </td>
             <td>{{order1.restaurantName}}</td>
             <td>{{order1.cost}}</td>
           </tr>
         </ng-container>
       </tbody>
     </table>
+
   </div>
+
 
   <div class="well well-md" *ngFor="let order of orders.reverse() | paginate : {itemsPerPage :4, currentPage: p}, index as i ">
     <p style="font-size:10px" class="pull-right">{{order.date | date:"MM/dd/yyyy, h:mm:ss a"}}</p><br />
     <h4><b>Order ID: {{order.orderId}}</b>
       <p class="pull-right">Total: {{order.total | currency:"Rs. "}}</p><br>
     </h4>
-    ------------------------------------------------------------------------------------------------------------------------
-    <button class="btn btn-xs btn-info pull-right" (click)="getOrdersCart(order._id)">
-      View Orders
+    --------------------------------------------------------------------------------------------------------------------------------------------------&nbsp;&nbsp;&nbsp;
+    <button class="btn btn-xs btn-success" (click)="getOrdersCart(order._id)">
+      View Order
+    </button>&nbsp;&nbsp;
+    <button class="btn btn-xs btn-danger pull-right" (click)="deleteOrdersCart(order._id)">
+      Delete Order
     </button>
+    <!-- <button class="btn btn-xs btn-info glyphicon glyphicon-edit" (click)="editOrderCart(order._id)">
+
+    </button> -->
   </div>
   <pagination-controls (pageChange)="p = $event"></pagination-controls>
 </div>
